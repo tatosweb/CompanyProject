@@ -1,6 +1,5 @@
 package com.company.controller;
 
-import java.util.List;
 
 import com.company.api.CompanyAPI;
 import com.company.model.Company;
@@ -10,12 +9,13 @@ import spark.Spark;
 
 public class CompanyController {
 
-	
+
 	private static Gson json = new Gson();
 	
 	
 	public CompanyController(CompanyAPI api) {
 		
+		Spark.port(Integer.valueOf(System.getenv("PORT")));
 		
 		Spark.get("/companies", (req, res) -> {
 			res.type("application/json");
