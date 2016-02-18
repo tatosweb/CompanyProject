@@ -8,6 +8,7 @@ import java.util.NoSuchElementException;
 
 import com.company.model.Company;
 
+
 /**
  * @author Jorge Ramirez
  *
@@ -41,50 +42,52 @@ public class CompanyAPI {
 	}
 	
 	/**
-	 * @param name of the company
-	 * @param address of the compay
-	 * @param city of the company's location
-	 * @param country of the company's location
-	 * @param email of the company
-	 * @param owners of the company
+	 * @param Company company with the data to create
 	 * @return Company created with the given data
 	 * 
 	 * company method creates a new company with the given data
 	 */
-	public Company createCompany(String name, String address, String city, String country, String email, String phoneNumber, List<String> owners) {
-		Company newCompany = new Company(name, address, city, country, email, phoneNumber, owners);
-		companies.put(newCompany.getCompanyId(), newCompany);
-		return newCompany;
+	public Company createCompany(Company company) {
+		company.setCompanyId();
+		company.isValid();
+		companies.put(company.getCompanyId(), company);
+		return company;
 	}
 	
 	/**
-	 * @param CompanyId id the company to update
-	 * @param name of the company
-	 * @param address of the compay
-	 * @param city of the company's location
-	 * @param country of the company's location
-	 * @param email of the company
-	 * @param owners of the company
-	 * @return Comany with the updated values
+	 * @param Company with the data to update
+	 * @return Company with the updated values
 	 * 
 	 * company method update a company with the given data
 	 */
-	public Company updateCompany(String CompanyId, String name, String address, String city, String country, String email, String phoneNumber, List<String> owners) {
-		Company company = companies.get(CompanyId);
-		company.setName(name);
-		company.setAddress(address);
-		company.setCity(city);
-		company.setCountry(country);
-		company.setEmail(email);
-		company.setPhoneNumber(phoneNumber);
-		company.setOwners(owners);
+	public Company updateCompany(String companyId, Company reqCompany) {
+		if(companies.containsKey(companyId)){
+			Company company = companies.get(companyId);
+			company.setName(reqCompany.getName());
+			company.setAddress(reqCompany.getAddress());
+			company.setCity(reqCompany.getCity());
+			company.setCountry(reqCompany.getCountry());
+			company.setEmail(reqCompany.getEmail());
+			company.setPhoneNumber(reqCompany.getPhoneNumber());
+			company.setOwners(reqCompany.getOwners());
 
-		return company;
-		
+			return company;
+		}else{
+			throw new NoSuchElementException("The Company does not exists");
+		}
 	}
 	
+	/**
+	 * @param CompanyId
+	 * 
+	 * company method, delete a company with the given id
+	 */
 	public void deleteCompany(String CompanyId){
-		companies.remove(CompanyId);
+		if(companies.containsKey(CompanyId)){
+			companies.remove(CompanyId);
+		}else{
+			throw new NoSuchElementException("The Company does not exists");
+		}
 	}
 	
 }

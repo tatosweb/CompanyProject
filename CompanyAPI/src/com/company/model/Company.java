@@ -44,8 +44,10 @@ public class Company {
 	public String getCompanyId() {
 		return CompanyId;
 	}
-	public void setCompanyId(String id) {
-		this.CompanyId = id;
+	public void setCompanyId() {
+		if(CompanyId == null || CompanyId.isEmpty()){
+			this.CompanyId = UUID.randomUUID().toString();
+		}
 	}
 	public String getName() {
 		return name;
@@ -53,8 +55,6 @@ public class Company {
 	public void setName(String name) {
 		if(name != null && !name.isEmpty()){
 			this.name = name;
-		}else{
-			throw new IllegalArgumentException("The Name is Mandatory");
 		}
 	}
 	public String getAddress() {
@@ -63,8 +63,6 @@ public class Company {
 	public void setAddress(String address) {
 		if(address != null && !address.isEmpty()){
 			this.address = address;
-		}else{
-			throw new IllegalArgumentException("The Address is Mandatory");
 		}
 	}
 	public String getCity() {
@@ -73,8 +71,6 @@ public class Company {
 	public void setCity(String city) {
 		if(city != null && !city.isEmpty()){
 			this.city = city;
-		}else{
-			throw new IllegalArgumentException("The City is Mandatory");
 		}
 	}
 	public String getCountry() {
@@ -83,22 +79,24 @@ public class Company {
 	public void setCountry(String country) {
 		if(country != null && !country.isEmpty()){
 			this.country = country;
-		}else{
-			throw new IllegalArgumentException("The Country is Mandatory");
 		}
 	}
 	public String getEmail() {
 		return email;
 	}
 	public void setEmail(String email) {
-		this.email = email;
+		if(email != null && !email.isEmpty()){
+			this.email = email;
+		}
 	}
 	public String getPhoneNumber() {
 		return phoneNumber;
 	}
 
 	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
+		if(phoneNumber != null && !phoneNumber.isEmpty()){
+			this.phoneNumber = phoneNumber;
+		}
 	}
 
 	public List<String> getOwners() {
@@ -112,4 +110,23 @@ public class Company {
 		}
 	}
 
+	public void isValid()throws IllegalArgumentException {
+		
+		if(name == null || name.isEmpty()){
+			throw new IllegalArgumentException("The Name are Mandatory");
+		}
+		if(address == null || address.isEmpty()){
+			throw new IllegalArgumentException("The Addredd are Mandatory");
+		}
+		if(city == null || city.isEmpty()){
+			throw new IllegalArgumentException("The City are Mandatory");
+		}
+		if(country == null || country.isEmpty()){
+			throw new IllegalArgumentException("The Country are Mandatory");
+		}
+		if(owners == null || owners.isEmpty()){
+			throw new IllegalArgumentException("The Owners are Mandatory");
+		}
+		
+	}
 }

@@ -1,18 +1,23 @@
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 
 import com.company.api.CompanyAPI;
 import com.company.controller.CompanyController;
+import com.company.model.Company;
 
-import spark.Spark;
 
 
 public class Test {
 
 	public static void main(String[] args) {
 		
+		HashMap<String, String> asd = new HashMap<>();
+		
+		asd.get("123");
+		
 		CompanyAPI api = new CompanyAPI();
-		api.createCompany("asd", "direccion", "ciudad", "pais", "MAIL", "222332", Arrays.asList("yo"));
+		Company co = new Company("asd", "direccion", "ciudad", "pais", "MAIL", "222332", Arrays.asList("yo"));
+		api.createCompany(co);
 		
 		System.out.println(api.listCompanies());
 		
