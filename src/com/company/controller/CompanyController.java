@@ -15,7 +15,8 @@ public class CompanyController {
 	
 	public CompanyController(CompanyAPI api) {
 		
-		Spark.port(Integer.valueOf(System.getenv("PORT")));
+		//Spark.port(Integer.valueOf(System.getenv("PORT")));
+		Spark.port(Integer.valueOf("4567"));
 		
 		Spark.get("/companies", (req, res) -> {
 			res.type("application/json");
