@@ -6,23 +6,23 @@ import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 
-import com.company.model.Company;
+import com.company.model.Recipe;
 
 
 /**
  * @author Jorge Ramirez
  *
  */
-public class CompanyAPI {
+public class RecipeAPI {
 
-	private Map<String, Company> companies = new HashMap<String, Company>();
+	private Map<String, Recipe> companies = new HashMap<String, Recipe>();
 	
 	/**
 	 * @return List<Company> a list with all the companies
 	 * 
 	 * company method create a list of all the companies
 	 */
-	public List<Company> listCompanies() { 
+	public List<Recipe> listCompanies() { 
 		return new ArrayList<>(companies.values());
 	}
 	
@@ -32,8 +32,8 @@ public class CompanyAPI {
 	 * 
 	 * company method returns a company that match with the given id
 	 */
-	public Company getCompany(String CompanyId) {
-		Company company = companies.get(CompanyId);
+	public Recipe getCompany(String CompanyId) {
+		Recipe company = companies.get(CompanyId);
 		if(company != null){
 			return company;
 		}else{
@@ -47,10 +47,10 @@ public class CompanyAPI {
 	 * 
 	 * company method creates a new company with the given data
 	 */
-	public Company createCompany(Company company) {
-		company.setCompanyId();
+	public Recipe createCompany(Recipe company) {
+		company.setRecipeId();
 		company.isValid();
-		companies.put(company.getCompanyId(), company);
+		companies.put(company.getRecipeId(), company);
 		return company;
 	}
 	
@@ -60,16 +60,13 @@ public class CompanyAPI {
 	 * 
 	 * company method update a company with the given data
 	 */
-	public Company updateCompany(String companyId, Company reqCompany) {
+	public Recipe updateCompany(String companyId, Recipe reqCompany) {
 		if(companies.containsKey(companyId)){
-			Company company = companies.get(companyId);
+			Recipe company = companies.get(companyId);
 			company.setName(reqCompany.getName());
-			company.setAddress(reqCompany.getAddress());
-			company.setCity(reqCompany.getCity());
-			company.setCountry(reqCompany.getCountry());
-			company.setEmail(reqCompany.getEmail());
-			company.setPhoneNumber(reqCompany.getPhoneNumber());
-			company.setOwners(reqCompany.getOwners());
+			company.setDescription(reqCompany.getDescription());
+			company.setScore(reqCompany.getScore());
+			company.setSteps(reqCompany.getSteps());
 
 			return company;
 		}else{

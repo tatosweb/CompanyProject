@@ -1,12 +1,12 @@
 package com.company.main;
 
-import com.company.api.CompanyAPI;
-import com.company.controller.CompanyController;
+import com.company.api.RecipeAPI;
+import com.company.controller.RecipeController;
 
 public class Main {
 
 	public static void main(String[] args) {
-		CompanyAPI api = new CompanyAPI();
-		new CompanyController(api);
+		RecipeAPI api = new RecipeAPI();
+		new RecipeController(api);
 	}
 }

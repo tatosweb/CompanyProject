@@ -1,19 +1,19 @@
 package com.company.controller;
 
 
-import com.company.api.CompanyAPI;
-import com.company.model.Company;
+import com.company.api.RecipeAPI;
+import com.company.model.Recipe;
 import com.google.gson.Gson;
 
 import spark.Spark;
 
-public class CompanyController {
+public class RecipeController {
 
 
 	private static Gson json = new Gson();
 	
 	
-	public CompanyController(CompanyAPI api) {
+	public RecipeController(RecipeAPI api) {
 		
 		//Spark.port(Integer.valueOf(System.getenv("PORT")));
 		Spark.port(Integer.valueOf("4567"));
@@ -38,7 +38,7 @@ public class CompanyController {
 		});
 		
 		Spark.post("/companies", (req, res) -> {
-			Company company = json.fromJson(req.body(), Company.class);
+			Recipe company = json.fromJson(req.body(), Recipe.class);
 			res.type("application/json");
 			try {
 				res.status(200);
@@ -52,7 +52,7 @@ public class CompanyController {
 		
 		Spark.put("/companies/:id", (req, res) -> {
 			String id = req.params(":id");
-			Company company = json.fromJson(req.body(), Company.class);
+			Recipe company = json.fromJson(req.body(), Recipe.class);
 			res.type("application/jason");
 			try {
 				return json.toJson(api.updateCompany(id, company));
