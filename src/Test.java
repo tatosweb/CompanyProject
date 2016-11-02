@@ -1,10 +1,10 @@
 import java.util.Arrays;
 import java.util.HashMap;
 
-import com.company.api.RecipeAPI;
-import com.company.controller.RecipeController;
-import com.company.model.Recipe;
-import com.company.model.Step;
+import com.recipe.api.RecipeAPI;
+import com.recipe.controller.RecipeController;
+import com.recipe.model.Recipe;
+import com.recipe.model.Step;
 
 
 
@@ -18,9 +18,9 @@ public class Test {
 		
 		RecipeAPI api = new RecipeAPI();
 		Recipe co = new Recipe("A","B","C", Arrays.asList(new Step("S1", "s2")));
-		api.createCompany(co);
+		api.createRecipe(co);
 		
-		System.out.println(api.listCompanies());
+		System.out.println(api.listRecipies());
 		
 		RecipeController controle = new RecipeController(api);
 

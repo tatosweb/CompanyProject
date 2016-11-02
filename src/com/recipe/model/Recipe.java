@@ -1,7 +1,7 @@
 /**
  *
  */
-package com.company.model;
+package com.recipe.model;
 
 import java.util.List;
 import java.util.UUID;
@@ -87,10 +87,10 @@ public class Recipe {
             throw new IllegalArgumentException("The Addredd are Mandatory");
         }
         if (score == null || score.isEmpty()) {
-            throw new IllegalArgumentException("The City are Mandatory");
+            throw new IllegalArgumentException("The score are Mandatory");
         }
-        if (steps == null || steps.isEmpty()) {
-            throw new IllegalArgumentException("The steps are Mandatory");
-        }
+//        if (steps == null || steps.isEmpty()) {
+//            throw new IllegalArgumentException("The steps are Mandatory");
+//        }
     }
 }

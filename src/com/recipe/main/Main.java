@@ -1,7 +1,7 @@
-package com.company.main;
+package com.recipe.main;
 
-import com.company.api.RecipeAPI;
-import com.company.controller.RecipeController;
+import com.recipe.api.RecipeAPI;
+import com.recipe.controller.RecipeController;
 
 public class Main {
 

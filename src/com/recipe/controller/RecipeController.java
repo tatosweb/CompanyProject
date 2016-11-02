@@ -1,8 +1,8 @@
-package com.company.controller;
+package com.recipe.controller;
 
 
-import com.company.api.RecipeAPI;
-import com.company.model.Recipe;
+import com.recipe.api.RecipeAPI;
+import com.recipe.model.Recipe;
 import com.google.gson.Gson;
 
 import spark.Spark;
@@ -18,18 +18,18 @@ public class RecipeController {
 		//Spark.port(Integer.valueOf(System.getenv("PORT")));
 		Spark.port(Integer.valueOf("4567"));
 		
-		Spark.get("/companies", (req, res) -> {
+		Spark.get("/recipies", (req, res) -> {
 			res.type("application/json");
 			res.status(200);
-			return json.toJson(api.listCompanies());
+			return json.toJson(api.listRecipies());
 		});
 		
-		Spark.get("/companies/:id", (req, res) -> {
+		Spark.get("/recipies/:id", (req, res) -> {
 			String id = req.params(":id");
 			res.type("application/json");
 			try {
 				res.status(200);
-				return json.toJson(api.getCompany(id));
+				return json.toJson(api.getRecipe(id));
 			} catch (Exception e) {
 				res.status(500);
 				return "{\"error\": \""+e+"\"}";
@@ -37,12 +37,12 @@ public class RecipeController {
 			
 		});
 		
-		Spark.post("/companies", (req, res) -> {
-			Recipe company = json.fromJson(req.body(), Recipe.class);
+		Spark.post("/recipies", (req, res) -> {
+			Recipe recipe = json.fromJson(req.body(), Recipe.class);
 			res.type("application/json");
 			try {
 				res.status(200);
-				return json.toJson(api.createCompany(company));
+				return json.toJson(api.createRecipe(recipe));
 			} catch (Exception e) {
 				res.status(500);
 				return "{\"error\": \""+e+"\"}";
@@ -50,24 +50,24 @@ public class RecipeController {
 			
 		});
 		
-		Spark.put("/companies/:id", (req, res) -> {
+		Spark.put("/recipies/:id", (req, res) -> {
 			String id = req.params(":id");
-			Recipe company = json.fromJson(req.body(), Recipe.class);
+			Recipe recipe = json.fromJson(req.body(), Recipe.class);
 			res.type("application/jason");
 			try {
-				return json.toJson(api.updateCompany(id, company));
+				return json.toJson(api.updateRecipe(id, recipe));
 			} catch (Exception e) {
 				return "{\"error\": \""+e+"\"}";
 			}
-			//return json.toJson(api.updateCompany(id, name, address, city, country, email, phoneNumber, owners));
+			//return json.toJson(api.updateRecipe(id, name, address, city, country, email, phoneNumber, owners));
 		});
 		
-		Spark.delete("/companies/:id", (req, res) -> {
+		Spark.delete("/recipies/:id", (req, res) -> {
 			String id = req.params(":id");
 			res.type("application/json");
 			try {
 				res.status(200);
-				api.deleteCompany(id);
+				api.deleteRecipe(id);
 				return "{\"result\": \"True\"}";
 			} catch (Exception e) {
 				res.status(500);

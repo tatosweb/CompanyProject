@@ -3,27 +3,40 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.company.model;
+package com.recipe.model;
+
+import java.util.UUID;
 
 /**
  *
- * @author 
+ * @author
  */
 public class Step {
-    
+
+    private String stepId;
     private String url;
     private String description;
 
     /**
-     * 
+     *
      * @param url
-     * @param description 
+     * @param description
      */
     public Step(String url, String description) {
-        this.setUrl( url);
+        this.setStepId();
+        this.setUrl(url);
         this.setDescription(description);
     }
-    
+
+    public void setStepId() {
+        if (stepId == null || stepId.isEmpty()) {
+            this.stepId = UUID.randomUUID().toString();
+        }
+    }
+    public String getStepId(){
+        return stepId;
+    }
+
     /**
      * @return the url
      */
@@ -35,9 +48,9 @@ public class Step {
      * @param url the url to set
      */
     public void setUrl(String url) {
-         if (url != null && !url.isEmpty()) {
-                this.url = url;
-         }
+        if (url != null && !url.isEmpty()) {
+            this.url = url;
+        }
     }
 
     /**
@@ -51,11 +64,9 @@ public class Step {
      * @param description the description to set
      */
     public void setDescription(String description) {
-         if (description != null && !description.isEmpty()) {
-                this.description = description;
-         }
+        if (description != null && !description.isEmpty()) {
+            this.description = description;
+        }
     }
-    
-    
-    
+
 }
