@@ -1,9 +1,10 @@
 import java.util.Arrays;
 import java.util.HashMap;
 
-import com.company.api.CompanyAPI;
-import com.company.controller.CompanyController;
-import com.company.model.Company;
+import com.recipe.api.RecipeAPI;
+import com.recipe.controller.RecipeController;
+import com.recipe.model.Recipe;
+import com.recipe.model.Step;
 
 
 
@@ -15,13 +16,13 @@ public class Test {
 		
 		asd.get("123");
 		
-		CompanyAPI api = new CompanyAPI();
-		Company co = new Company("asd", "direccion", "ciudad", "pais", "MAIL", "222332", Arrays.asList("yo"));
-		api.createCompany(co);
+		RecipeAPI api = new RecipeAPI();
+		Recipe co = new Recipe("A","B","C", Arrays.asList(new Step("S1", "s2")));
+		api.createRecipe(co);
 		
-		System.out.println(api.listCompanies());
+		System.out.println(api.listRecipies());
 		
-		CompanyController controle = new CompanyController(api);
+		RecipeController controle = new RecipeController(api);
 
 	}
 
