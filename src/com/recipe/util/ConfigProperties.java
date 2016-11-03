@@ -45,16 +45,11 @@ public class ConfigProperties {
     }
 
     /**
-     * 
-     * @param property
-     * @return 
+     * Get parameter value from properties
+     * @param propertyId 
+     * @return String value based on the PropertyID otherwise null
      */
-    public static String getProperty(PropertyId property) {
-        return prop.getProperty(property.name());
+    public static String getProperty(PropertyId propertyId) {
+        return prop.getProperty(propertyId.name());
     }
-
-    public static void main (String arsg []){
-        System.out.println( "PROPIEDAD" + getProperty(PropertyId.RECIPE_SPARK_PORT)) ;
-    }
-    
 }
