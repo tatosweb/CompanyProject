@@ -4,6 +4,8 @@ package com.recipe.controller;
 import com.recipe.api.RecipeAPI;
 import com.recipe.model.Recipe;
 import com.google.gson.Gson;
+import com.recipe.util.ConfigProperties;
+import com.recipe.util.PropertyId;
 
 import spark.Spark;
 
@@ -15,8 +17,9 @@ public class RecipeController {
 	
 	public RecipeController(RecipeAPI api) {
 		
-		//Spark.port(Integer.valueOf(System.getenv("PORT")));
-		Spark.port(Integer.valueOf("4567"));
+                Spark.port(Integer.valueOf(
+                        ConfigProperties.getProperty(PropertyId.RECIPE_SPARK_PORT) != null ?
+                                ConfigProperties.getProperty(PropertyId.RECIPE_SPARK_PORT) :  System.getenv("PORT")));
 		
 		Spark.get("/recipies", (req, res) -> {
 			res.type("application/json");
