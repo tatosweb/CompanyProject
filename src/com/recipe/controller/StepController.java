@@ -9,9 +9,7 @@ import com.recipe.util.PropertyId;
 
 import java.util.HashMap;
 
-import spark.Request;
-import spark.Response;
-import spark.Route;
+import spark.Spark;
 
 public class StepController {
 
@@ -37,7 +35,7 @@ public class StepController {
             res.type("application/json");
             try {
                 res.status(200);
-                return json.toJson(api.geStep(id));
+                return json.toJson(api.getStep(id));
             } catch (Exception e) {
                 res.status(500);
                 return "{\"error\": \""+e+"\"}";

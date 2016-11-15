@@ -17,8 +17,8 @@ public class Test {
 		asd.get("123");
 		
 		RecipeAPI api = new RecipeAPI();
-		Recipe co = new Recipe("A","B","C", Arrays.asList(new Step("S1", "s2")));
-		api.createRecipe(co);
+		// Recipe co = new Recipe("A","B","C", Arrays.asList(new Step("S1", "s2")));
+		// api.createRecipe(co);
 		
 		System.out.println(api.listRecipies());
 		

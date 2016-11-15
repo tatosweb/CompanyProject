@@ -1,5 +1,7 @@
 package com.recipe.main;
 
+import com.mongodb.*;
+
 import com.recipe.api.RecipeAPI;
 import com.recipe.controller.RecipeController;
 
@@ -14,15 +16,5 @@ public class Main {
 
         MongoClient mongoClient = new MongoClient("localhost");
         return mongoClient.getDB("recipe");
-
-        int port = 27017;
-        String dbname = "recipe";
-        String username = "";
-        String password = "";
-        MongoClientOptions mongoClientOptions = MongoClientOptions.builder().build();
-        MongoClient mongoClient = new MongoClient(new ServerAddress(host, port), mongoClientOptions);
-        mongoClient.setWriteConcern(WriteConcern.SAFE);
-        DB db = mongoClient.getDB(dbname);
-        return db;
     }
 }

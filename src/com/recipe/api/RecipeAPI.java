@@ -52,7 +52,7 @@ public class RecipeAPI {
 		recipe.setRecipeId();
 		recipe.isValid();
                 for(Step step:recipe.getSteps()){
-                    step.setStepId();
+                    // step.setStepId();
                 }
 		recipies.put(recipe.getRecipeId(), recipe);
 		return recipe;

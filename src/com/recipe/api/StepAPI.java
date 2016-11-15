@@ -7,6 +7,9 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 
 import com.recipe.model.Step;
+import com.mongodb.*;
+import org.bson.types.ObjectId;
+import com.google.gson.Gson;
 
 
 /**
@@ -26,7 +29,7 @@ public class StepAPI {
     /**
      * @return List<Step> a list with all the steps
      * 
-     * recipe method create a list of all the steps
+     * step method create a list of all the steps
      */
     public List<Step> listSteps() { 
         List<Step> steps = new ArrayList<Step>();
@@ -35,6 +38,7 @@ public class StepAPI {
             DBObject dbObject = dbObjects.next();
             steps.add(new Step((BasicDBObject) dbObject));
         }
+        return steps;
     }
     
     /**
@@ -53,27 +57,28 @@ public class StepAPI {
      * 
      * step method creates a new step with the given data
      */
-    public Recipe createStep(String body) {
+    public Step createStep(String body) {
         Step step = new Gson().fromJson(body, Step.class);
-        collection.insert(new BasicDBObject("url", step.getUrl()).append("description", step.getDescription));
+        collection.insert(new BasicDBObject("url", step.getUrl()).append("description", step.getDescription()));
+        return step;
     }
     
     /**
      * @param Step with the data to update
      * @return Step with the updated values
      * 
-     * recipe method update a recipe with the given data
+     * step method update a step with the given data
      */
-    public Recipe updateStep(String id, String body) {
+    public Step updateStep(String id, String body) {
         Step step = new Gson().fromJson(body, Step.class);
-        collection.update(new BasicDBObject("_id", new ObjectId(id)), BasicDBObject("url", step.getUrl()).append("description", step.getDescription));
-        return this.find(id);
+        collection.update(new BasicDBObject("_id", new ObjectId(id)), new BasicDBObject("url", step.getUrl()).append("description", step.getDescription()));
+        return this.getStep(id);
     }
     
     /**
      * @param id
      * 
-     * recipe method, delete a recipe with the given id
+     * step method, delete a step with the given id
      */
     public void deleteStep(String id){
         collection.remove(new BasicDBObject("_id", new ObjectId(id)));
